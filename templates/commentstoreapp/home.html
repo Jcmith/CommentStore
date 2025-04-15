@@ -1,0 +1,34 @@
+{% extends 'commentstoreapp/base.html' %}
+
+{% block title %}
+    Comment Store Homepage
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {% if cmnt_list|length > 0 %}
+            <h5>User <em>{{user.username}}</em> comments:</h5>
+            <br>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Comment</th>
+                </tr>
+                {% for cmnt in cmnt_list %}
+                    <tr>
+                        <td>{{ cmnt.name }}</td>
+                        <td>{{ cmnt.visitdate }}</td>
+                        <td>{{ cmnt.commentstr }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h5>There are no comments for user: <em>{{user.username}}</em>.</h5>
+        {% endif %}
+    {% else %}
+        <h5>Comment Store Application Homepage. Please login to start ...</h5>
+    {% endif %}
+
+{% endblock %}
