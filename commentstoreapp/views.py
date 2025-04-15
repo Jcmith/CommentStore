@@ -24,7 +24,7 @@ def commentstore(request):
         form = InsertNewComment()
 
     return render(request, "commentstoreapp/comment.html", {"form": form})
-
+@csrf_protect
 def home(request):
     # Get the current list of payments directly from the model:
     cmnt_list = list(Payment.objects.all())
