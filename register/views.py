@@ -1,10 +1,12 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
+
 from register.forms import RegisterForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 
-
+@csrf_protect
 def register_user(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -18,7 +20,7 @@ def register_user(request):
     form = RegisterForm()
     return render(request, "register/register.html", {"register_user": form})
 
-
+@csrf_protect
 def login_user(request):
     if request.method == "POST":
         form = AuthenticationForm(request, request.POST)
@@ -37,7 +39,7 @@ def login_user(request):
     form = AuthenticationForm()
     return render(request, "register/login.html", {"login_user": form})
 
-
+@csrf_protect
 def logout_user(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")

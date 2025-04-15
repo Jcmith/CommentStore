@@ -1,44 +1,19 @@
 {% extends 'commentstoreapp/base.html' %}
 {% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 
 {% block title %}
     Insert a comment
 {% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-    {% if user.is_authenticated %}
-        <h4>Insert a comment:</h4>
-        <form method="post" action="/commentstoreapp/">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-primary">Submit Comment</button>
-            <button type="reset" class="btn btn-primary">Reset Form</button>
-        </form>
-        
-        {% if cmnt_list %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Comment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for comment in cmnt_list %}
-                        <tr>
-                            <td>{{ comment.name }}</td>
-                            <td>{{ comment.visit_date }}</td>
-                            <td>{{ comment.comment_str }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>There are no comments for user: <em>{{ user.username }}</em></p>
-        {% endif %}
-    {% else %}
-        <p>Comment Store Application Homepage. Please login to start ...</p>
-    {% endif %}
+    <h4> New Payment </h4>
+    <form method="POST" action="/commentstoreapp/">
+    {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" value="submit" class="btn btn-primary">Submit Comment</button>
+        <button type="reset" value="submit" class="btn btn-primary">Reset Form</button>
+    </form>
+
 {% endblock %}
