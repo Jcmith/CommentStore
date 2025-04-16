@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('commentstoreapp', '0001_initial'),
+        ('request', '0001_initial'),
     ]
 
     operations = [

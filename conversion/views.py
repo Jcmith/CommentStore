@@ -1,7 +1,7 @@
 from rest_framework import generics
-from .serializers import PaymentSerializer, MoneySerializer
+from .serializers import RequestSerializer, MoneySerializer
 from transactions.models import Money
-from commentstoreapp.models import Payment
+from request.models import Request
 
 
 class MoneyList(generics.ListCreateAPIView):
@@ -15,9 +15,9 @@ class MoneyList(generics.ListCreateAPIView):
         return queryset
 
 
-class PaymentList(generics.ListCreateAPIView):
-    serializer_class = PaymentSerializer
-    queryset = Payment.objects.all()
+class RequestList(generics.ListCreateAPIView):
+    serializer_class = RequestSerializer
+    queryset = Request.objects.all()
 
 
 class MoneyDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -25,9 +25,9 @@ class MoneyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Money.objects.all()
 
 
-class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = PaymentSerializer
-    queryset = Payment.objects.all()
+class RequestDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = RequestSerializer
+    queryset = Request.objects.all()
 
 
 from rest_framework.views import APIView

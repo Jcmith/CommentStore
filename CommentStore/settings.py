@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'commentstoreapp.apps.CommentstoreappConfig',
+    'request.apps.RequestConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_extensions',

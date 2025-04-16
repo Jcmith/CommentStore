@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from commentstoreapp import views
+from request import views
 from register import views as register_views
 
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
     path("register/", register_views.register_user, name="register"),
     path("login/", register_views.login_user, name="login"),
     path("logout/", register_views.logout_user, name="logout"),
-    path('commentstoreapp/', include('commentstoreapp.urls')),
+    path('request/', include('request.urls')),
     path('moneytransfer/', include('transactions.urls')),
     path('admin/', admin.site.urls),
     path('conversion-auth/', include('rest_framework.urls')),

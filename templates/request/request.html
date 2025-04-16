@@ -1,18 +1,18 @@
-{% extends 'commentstoreapp/base.html' %}
+{% extends 'request/base.html' %}
 {% load crispy_forms_filters %}
 
 {% block title %}
-    Insert a comment
+    Payment Request
 {% endblock %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h4> New Payment </h4>
-    <form method="POST" action="/commentstoreapp/">
+    <h4> New Request </h4>
+    <form method="POST" action="/request/">
     {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" value="submit" class="btn btn-primary">Submit Comment</button>
+        <button type="submit" value="submit" class="btn btn-primary">Submit Request</button>
         <button type="reset" value="submit" class="btn btn-primary">Reset Form</button>
     </form>
 

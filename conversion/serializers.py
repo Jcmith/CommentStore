@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from commentstoreapp.models import Payment
+from request.models import Request
 from transactions.models import Money
 
 
-class PaymentSerializer(serializers.ModelSerializer):
+class RequestSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Payment
+        model = Request
         fields = ('__all__')
 
 

@@ -1,0 +1,52 @@
+{% extends 'request/base.html' %}
+
+{% block title %}
+    PayApp Homepage
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {% if cmnt_list|length > 0 %}
+            <h5>User <em>{{user.username}}</em>s' requests:</h5>
+            <br>
+            <table>
+                <tr>
+                    <th>From</th>
+                    <th>Time</th>
+                    <th>Amount</th>
+                </tr>
+                {% for cmnt in cmnt_list %}
+                    <tr>
+                        <td>{{ cmnt.name }}</td>
+                        <td>{{ cmnt.request_time }}</td>
+                        <td>{{ cmnt.request_amount }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h5>There are no requests for user: <em>{{user.username}}</em>.</h5>
+        {% endif %}
+    {% else %}
+        <h5>PayApp Homepage.</h5>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+        <br>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Money</th>
+            </tr>
+            <tr>
+                <td>{{ src_money.name }}</td>
+                <td>{{ src_money.money }}</td>
+            </tr>
+            <tr>
+                <td>{{ dst_money.name }}</td>
+                <td>{{ dst_money.money }}</td>
+            </tr>
+        </table>
+    {% endif %}
+
+{% endblock %}
