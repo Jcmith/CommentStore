@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'werkzeug',
     'transactions.apps.TransactionsConfig',
     'rest_framework',
-    'conversion.apps.ConversionConfig'
+    'conversion.apps.ConversionConfig',
+    'superuser.apps.SuperuserConfig'
 
 ]
 
@@ -133,3 +134,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+LOGIN_URL = '/login/'

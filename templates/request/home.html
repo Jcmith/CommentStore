@@ -5,48 +5,86 @@
 {% endblock %}
 
 {% block content %}
-
     {% if user.is_authenticated %}
-        {% if cmnt_list|length > 0 %}
-            <h5>User <em>{{user.username}}</em>s' requests:</h5>
+        <!-- Account Balance -->
+        <h5>Your Account Balance</h5>
+        {% if user_money %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ user_money.formatted }}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <p><em>No balance record found.</em></p>
+        {% endif %}
+
+        <!-- Payment Requests -->
+        {% if display_requests|length > 0 %}
+            <h5>{{ user.username }}'s Payment Requests:</h5>
             <br>
-            <table>
+            <table class="table">
+                <thead>
                 <tr>
                     <th>From</th>
                     <th>Time</th>
                     <th>Amount</th>
                 </tr>
-                {% for cmnt in cmnt_list %}
+                </thead>
+                <tbody>
+                {% for r in display_requests %}
                     <tr>
-                        <td>{{ cmnt.name }}</td>
-                        <td>{{ cmnt.request_time }}</td>
-                        <td>{{ cmnt.request_amount }}</td>
+                        <td>{{ r.from }}</td>
+                        <td>{{ r.time }}</td>
+                        <td>{{ r.symbol }}{{ r.amount|floatformat:2 }}</td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         {% else %}
-            <h5>There are no requests for user: <em>{{user.username}}</em>.</h5>
+            <h5>No payment requests found for {{ user.username }}.</h5>
+        {% endif %}
+
+        <!-- Recent Transactions -->
+        <br>
+        <h5>Your Recent Transactions:</h5>
+        {% if transactions %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for trans in transactions %}
+                    <tr>
+                        <td>{{ trans.sender.username }}</td>
+                        <td>{{ trans.receiver.username }}</td>
+                        <td>
+                            {% if trans.sender == user %}
+                                {{ user_money.symbol }}{{ trans.amount|floatformat:2 }}
+                            {% else %}
+                                {{ user_money.symbol }}{{ trans.converted_amount|floatformat:2 }}
+                            {% endif %}
+                        </td>
+                        <td>{{ trans.transaction_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No transactions to display.</p>
         {% endif %}
     {% else %}
         <h5>PayApp Homepage.</h5>
     {% endif %}
-    
-    {% if user.is_authenticated %}
-        <br>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Money</th>
-            </tr>
-            <tr>
-                <td>{{ src_money.name }}</td>
-                <td>{{ src_money.money }}</td>
-            </tr>
-            <tr>
-                <td>{{ dst_money.name }}</td>
-                <td>{{ dst_money.money }}</td>
-            </tr>
-        </table>
-    {% endif %}
-
 {% endblock %}

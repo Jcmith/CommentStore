@@ -1,0 +1,35 @@
+{% extends 'request/base.html' %}
+
+{% block title %}
+    Transaction Successful
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="alert alert-success" role="alert">
+            Your transaction was successful!
+        </div>
+
+        <h5>Transaction Details</h5>
+        <table class="table">
+            <tr>
+                <th>Old Balance</th>
+                <td>{{ symbol }}{{ old_balance|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <th>Amount Transferred</th>
+                <td>{{ symbol }}{{ amount|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <th>Recipient</th>
+                <td>{{ dst_username }}</td>
+            </tr>
+            <tr>
+                <th>New Balance</th>
+                <td>{{ symbol }}{{ new_balance|floatformat:2 }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <p>Please <a href="/login/">log in</a> to view this page.</p>
+    {% endif %}
+{% endblock %}

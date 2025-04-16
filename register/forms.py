@@ -47,7 +47,6 @@ class RegisterForm(UserCreationForm):
                     # Retrieve the converted amount from the response
                     converted_amount = float(conversion_data.get('converted_amount', baseline_amount))
                 else:
-                    # Optionally, log the error or notify of a fallback
                     converted_amount = baseline_amount
             except Exception as e:
                 # In case of an exception, use the baseline amount

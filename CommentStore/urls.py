@@ -20,6 +20,7 @@ from request import views
 from register import views as register_views
 
 urlpatterns = [
+
     path('home/', views.home, name="home"),
     path("register/", register_views.register_user, name="register"),
     path("login/", register_views.login_user, name="login"),
