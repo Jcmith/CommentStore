@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_extensions',
     'werkzeug',
+    'transactions.apps.TransactionsConfig'
 
 ]
 

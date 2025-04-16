@@ -1,0 +1,27 @@
+{% extends 'commentstoreapp/base.html' %}
+
+{% block title %}
+    Users' Money
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <br>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Money</th>
+            </tr>
+            <tr>
+                <td>{{ src_money.name }}</td>
+                <td>{{ src_money.money }}</td>
+            </tr>
+            <tr>
+                <td>{{ dst_money.name }}</td>
+                <td>{{ dst_money.money }}</td>
+            </tr>
+        </table>
+    {% endif %}
+
+{% endblock %}

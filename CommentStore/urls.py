@@ -25,5 +25,6 @@ urlpatterns = [
     path("login/", register_views.login_user, name="login"),
     path("logout/", register_views.logout_user, name="logout"),
     path('commentstoreapp/', include('commentstoreapp.urls')),
+    path('moneytransfer/', include('transactions.urls')),
     path('admin/', admin.site.urls),
 ]
