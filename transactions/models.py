@@ -10,7 +10,7 @@ CURRENCY_CHOICES = (
 
 class Money(models.Model):
     name = models.ForeignKey(User, on_delete=models.CASCADE)
-    money = models.IntegerField(default=750)
+    money = models.DecimalField(max_digits=10, decimal_places=2, default=750)
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default='GBP')
 
     def __str__(self):

@@ -27,4 +27,6 @@ urlpatterns = [
     path('commentstoreapp/', include('commentstoreapp.urls')),
     path('moneytransfer/', include('transactions.urls')),
     path('admin/', admin.site.urls),
+    path('conversion-auth/', include('rest_framework.urls')),
+    path('conversion/', include('conversion.urls')),path('conversion/', include('conversion.urls')),
 ]
