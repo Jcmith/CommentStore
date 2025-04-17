@@ -8,23 +8,21 @@
         <th>Date/Time</th>
         <th>Sender</th>
         <th>Receiver</th>
-        <th>Amount</th>
-        <th>Type</th>
-        <th>Status</th>
+        <th>Amount Sent</th>
+        <th>Amount Received</th>
       </tr>
     </thead>
     <tbody>
       {% for tx in txs %}
         <tr>
-          <td>{{ tx.timestamp|date:"Y-m-d H:i" }}</td>
-          <td>{{ tx.sender.username }}</td>
-          <td>{{ tx.receiver.username }}</td>
-          <td>{{ tx.amount }} {{ tx.currency }}</td>
-          <td>{{ tx.get_tx_type_display }}</td>
-          <td>{{ tx.status }}</td>
+          <td>{{ tx.time|date:"Y-m-d H:i" }}</td>
+          <td>{{ tx.sender }}</td>
+          <td>{{ tx.receiver }}</td>
+          <td>{{ tx.sender_symbol }}{{ tx.amount|floatformat:2 }}</td>
+          <td>{{ tx.receiver_symbol }}{{ tx.converted_amount|floatformat:2 }}</td>
         </tr>
       {% empty %}
-        <tr><td colspan="6">No transactions to display.</td></tr>
+        <tr><td colspan="5">No transactions to display.</td></tr>
       {% endfor %}
     </tbody>
   </table>

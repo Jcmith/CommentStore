@@ -41,7 +41,10 @@ def new_request(request):
 
 @login_required
 def home(request):
-    # Get current balance
+    # Redirect custom admin users to the admin home page
+    if request.user.is_admin:
+        return redirect('superuser_home')
+        # Get current balance
     try:
         user_money = Money.objects.get(name=request.user)
     except Money.DoesNotExist:
