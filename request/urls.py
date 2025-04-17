@@ -6,5 +6,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.commentstore, name='request'),
+    path('', views.new_request, name='request'),
 ]

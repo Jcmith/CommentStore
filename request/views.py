@@ -17,7 +17,7 @@ from django.shortcuts import get_object_or_404
 
 
 @login_required
-def commentstore(request):
+def new_request(request):
         form = InsertNewRequest(request.POST or None, user=request.user)
 
         if request.method == 'POST':

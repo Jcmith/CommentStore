@@ -1,11 +1,12 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
 
 class Request(models.Model):
-    from_user = models.ForeignKey(User, related_name='sent_requests', on_delete=models.CASCADE, null=True, blank=True)
-    to_user = models.ForeignKey(User, related_name='received_requests', on_delete=models.CASCADE, null=True, blank=True)
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='sent_requests', on_delete=models.CASCADE, null=True, blank=True)
+    to_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='received_requests', on_delete=models.CASCADE, null=True, blank=True)
     request_time = models.DateTimeField('request time', default=timezone.now)
     request_amount = models.DecimalField(max_digits=10, decimal_places=2)
 

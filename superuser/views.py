@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group
+from django.contrib.auth import get_user_model
 from transactions.models import Transaction
 from .decorators import admin_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group, User
+
+User = get_user_model()
 
 # Admin home
 @admin_required
-def home(request):
-    return render(request, 'superuser/admin_home.html')
+def superuser_home(request):
+    return render(request, 'superuser/superuser_home.html')
+
 # Lists all users
 @admin_required
 def user_list(request):
@@ -20,18 +24,16 @@ def transaction_list(request):
     txs = Transaction.objects.select_related('sender', 'receiver')
     return render(request, 'superuser/transaction_list.html', {'txs': txs})
 
-
-
 # Register new Admin
 @admin_required
-def create_admin(request):
+def create_superuser(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            staff_group = Group.objects.get(name='Administrators')
-            user.groups.add(staff_group)
-            return redirect('superuser:user_list')
+            user.is_admin = True  # promote to admin
+            user.save()
+            return redirect('user_list')
     else:
         form = UserCreationForm()
-    return render(request, 'superuser/create_admin.html', {'form': form})
+    return render(request, 'superuser/create_superuser.html', {'form': form})

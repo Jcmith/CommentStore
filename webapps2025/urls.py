@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from request import views
 from register import views as register_views
+from superuser import views as superuser_views
 
 urlpatterns = [
 
@@ -27,7 +28,7 @@ urlpatterns = [
     path("logout/", register_views.logout_user, name="logout"),
     path('request/', include('request.urls')),
     path('moneytransfer/', include('transactions.urls')),
-    path('admin/', include('superuser.urls')),
+    path('superuser/', include('superuser.urls')),
     path('conversion-auth/', include('rest_framework.urls')),
     path('conversion/', include('conversion.urls')),path('conversion/', include('conversion.urls')),
 ]
