@@ -27,7 +27,7 @@ urlpatterns = [
     path("logout/", register_views.logout_user, name="logout"),
     path('request/', include('request.urls')),
     path('moneytransfer/', include('transactions.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', include('superuser.urls')),
     path('conversion-auth/', include('rest_framework.urls')),
     path('conversion/', include('conversion.urls')),path('conversion/', include('conversion.urls')),
 ]

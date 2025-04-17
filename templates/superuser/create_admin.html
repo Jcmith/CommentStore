@@ -1,0 +1,12 @@
+{% extends "superuser/base_admin.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}Register Admin{% endblock %}
+{% block content %}
+  <h2>Register New Administrator</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Create Admin</button>
+  </form>
+{% endblock %}
